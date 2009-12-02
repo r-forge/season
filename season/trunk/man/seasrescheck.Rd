@@ -7,7 +7,7 @@
   \item{res}{residuals from some regression model.}
 }
 \details{Plots: i) histogram of the residuals, ii) a scatter plot against residual order, iii) the autocovariance, iv) the cumulative periodogram (see \code{\link{cpgram}})}
-\author{Adrian Barnett \email{a.barnett@qut.edu.au}}
+\author{Adrian Barnett \email{a.barnett<at>qut.edu.au}}
 \examples{
 # cardiovascular disease data 
 # (use an offset of the scaled number of days in a month)
