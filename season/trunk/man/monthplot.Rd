@@ -3,7 +3,7 @@
 \title{Plot results by month}
 \description{Plots results by month.}
 \usage{
-monthplot(data,resp,panels=12,...)
+monthplot(data,resp,panels=12,\dots)
 }
 \arguments{
   \item{data}{a data frame.}

@@ -10,6 +10,6 @@
   \item{\dots}{additional arguments passed to the print.}
 }
 \details{The code prints the monthly mean estimates.}
-\seealso{\code{monthmean}
+\seealso{\code{monthmean}}
 \author{Adrian Barnett \email{a.barnett<at>qut.edu.au}}
 
