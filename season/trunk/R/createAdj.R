@@ -1,7 +1,7 @@
 # createAdj.R
 # create an adjancency matrix by first creating a matrix
 
-createAdj<-function(matrix,filename='Adj.txt'){
+createAdj<-function(matrix,filename='Adj.txt',suffix=NULL){
 # checks
 if(is.matrix(matrix)!=TRUE){stop('Input must be a matrix')}
 if(dim(matrix)[1]!=dim(matrix)[2]){stop('Matrix must be square')}
@@ -27,12 +27,16 @@ for (i in 1:n){
    }
 }
 sumNumNeigh<-sum(weight)
+## Note for consideration next version
+## consider using something like
+## dump(ls(pattern = paste("num",suffix,sep="")),file=filename)
+## although no need to change if this is working OK     PB 4/12/2009
 ## Create adjacency matrix in CAR format ##
 zz <- file(filename, "w")  # open an output file connection
-cat("list(num=c(\n", file = zz)
+cat("list(num",suffix,"=c(\n",sep='', file = zz)
 nums<-paste(num,collapse=',')
 cat(nums,sep='',file = zz)
-cat("),\nadj=c(\n",sep='', file = zz)
+cat("),\nadj",suffix,"=c(\n",sep='', file = zz)
 # Output adjacency numbers as one row per region
 index<-0
 for (i in 1:length(num)){
@@ -45,11 +49,16 @@ for (i in 1:length(num)){
    }
    cat("\n",sep='',file = zz)
 }
-cat("),\nweights=c(\n",sep='', file = zz)
+cat("),\nweights",suffix,"=c(\n",sep='', file = zz)
 weights<-paste(weight,collapse=',')
 cat(weights,sep='',file = zz)
 cat("))\n",sep='', file = zz)
 close(zz)
+toret<-list()
+toret$num<-num
+toret$adj<-adj
+toret$weight<-weight
+return(toret)
 }
 # Example (nearest neighbour)
 #x<-c(NA,1,NA,NA,NA)

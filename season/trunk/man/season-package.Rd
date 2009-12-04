@@ -22,7 +22,7 @@ In the next version we hope to make the nscosinor function faster and improve th
 Package: \tab season\cr
 Type: \tab Package\cr
 Version: \tab 0.2-3\cr
-Date: \tab 2009-11-23\cr
+Date: \tab 2009-12-04\cr
 License: \tab GPL (>= 3)\cr
 }
 %~~ An overview of how to use the package, including the most important ~~

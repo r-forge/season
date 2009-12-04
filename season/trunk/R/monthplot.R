@@ -4,6 +4,7 @@
 # assumes there are numeric variables for month and year
 
 monthplot<-function(data,resp,panels=12, ...){
+  cat("Using this one!!!\n")
   if (panels!=1&panels!=12){stop("panels must be 1 or 12")}
   op <- par(no.readonly = TRUE) # the whole list of settable par's.
   attach(data, warn.conflicts = FALSE)
@@ -24,11 +25,12 @@ monthplot<-function(data,resp,panels=12, ...){
            y=max(resp,na.rm=TRUE)*1.1,leg.txt,lty=(1:12),
            ncol=6,box.lwd=1,cex=0.79)
   } # end of panels if
-                                        # version with 12 panels
+  ## version with 12 panels
   if (panels==12){
-    monname<-c('January','February','March','April','May',
-               'June','July','August','September','October',
-               'November','December')
+    ## monname<-c('January','February','March','April','May',
+    ##           'June','July','August','September','October',
+    ##           'November','December')
+    monname <- month.name
     par(mfrow=c(3,4),lwd=2,mai=c(0.10,0.12,0.42,0.12)) # c(bottom, left, top, right)
     for (i in 1:12){
       select<-data$month==i
