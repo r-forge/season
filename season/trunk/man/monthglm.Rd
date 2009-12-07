@@ -50,4 +50,5 @@ offsetpop=NULL)
 data(CVD)
 mmodel<-monthglm(formula=cvd~1,data=CVD,family=poisson(),
 offsetpop=pop/100000,offsetmonth=TRUE)
+summary(mmodel)
 }
