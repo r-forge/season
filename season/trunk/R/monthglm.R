@@ -19,7 +19,7 @@ monthglm<-function(formula,data,family=gaussian(),refmonth=1,
   call<-as.call(c(ans, frmls[add]))
   ## Transform month numbers to names
 ### was  months.u<-as.factor(month)
-  months.u<-as.factor(data$month)  # GUESS ONLY 
+  months.u<-as.factor(data$month)  
   nums<-as.numeric(nochars(levels(months.u))) # Month numbers
   levels(months.u)[nums]<-month.abb[nums]
   months<-relevel(months.u,ref=month.abb[refmonth]) # set reference month
@@ -30,10 +30,11 @@ monthglm<-function(formula,data,family=gaussian(),refmonth=1,
   index<-sum((names(data)==dep)*(1:ncol(data)))
   slimdata<-data[,index]
   days<-flagleap(data=data,report=FALSE) # get the number of days in each month
-  if(is.null(offsetpop)==FALSE){poff=offsetpop} else{poff=1}
-  if(offsetmonth==TRUE){moff=days$ndaysmonth/(365.25/12)} else{moff=1} # days per month divided by average month length
+  l<-nrow(data)
+  if(is.null(offsetpop)==FALSE){poff=offsetpop} else{poff=rep(1,l)}
+  if(offsetmonth==TRUE){moff=days$ndaysmonth/(365.25/12)} else{moff=rep(1,l)} # days per month divided by average month length
 ###  data$off<-log(poff*moff)
-  off<-log(poff*moff)  #  GUESS ONLY
+  off<-log(poff*moff)  # 
   fit<-glm(formula=f,data=data,family=family,offset=off)
   detach(data)
   ## return
