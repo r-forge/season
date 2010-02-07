@@ -18,7 +18,7 @@
     Package: \tab season\cr
     Type: \tab Package\cr
     Version: \tab 0.2-4\cr
-    Date: \tab 2010-01-21\cr
+    Date: \tab 2010-02-07\cr
     License: \tab GPL (>= 3)\cr
   }
 }
