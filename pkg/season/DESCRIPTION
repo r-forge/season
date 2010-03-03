@@ -2,7 +2,7 @@ Package: season
 Type: Package
 Title: Seasonal analysis of health data
 Version: 0.2-4
-Date: 2010-02-07
+Date: 2010-03-03
 Author: Adrian Barnett <a.barnett@qut.edu.au>, Peter Baker <p.baker1@uq.edu.au>
 Maintainer: Adrian Barnett <a.barnett@qut.edu.au>, Peter Baker <p.baker1@uq.edu.au>
 Description: Routines for the seasonal analysis of health data, including regression models, time-stratified case-crossover, plotting functions and residual checks.

@@ -5,20 +5,33 @@
 \title{ Tools for uncovering and estimating seasonal patterns.
 }
 \description{
-  The package contains graphical methods for displaying seasonal data and regression models for detecting and estimating seasonal patterns.
-  The regression models can be applied to normal, Poisson or binomial dependent data distributions. Tools are available for both time series data (equally spaced in time) and survey data (unequally spaced in time).
-  Sinusoidal (parametric) seasonal patterns are available (\code{\link{cosinor}}, \code{\link{nscosinor}}), as well as models for monthly data (\code{\link{monthglm}}), and the case-crossover method to control for seasonality (\code{\link{casecross}}).
+  The package contains graphical methods for displaying seasonal data
+  and regression models for detecting and estimating seasonal patterns.
+  
+  The regression models can be applied to normal, Poisson or binomial
+  dependent data distributions. Tools are available for both time series
+  data (equally spaced in time) and survey data (unequally spaced in
+time).
+
+  Sinusoidal (parametric) seasonal patterns are available
+  (\code{\link{cosinor}}, \code{\link{nscosinor}}), as well as models
+  for monthly data (\code{\link{monthglm}}), and the case-crossover
+  method to control for seasonality (\code{\link{casecross}}).
 }
 \details{
-  \code{season} aims to fill an important gap in the \R software by providing a range of tools for analysing seasonal data. The examples are based on health data, but the functions are equally applicable to any data with a seasonal pattern.
+  \code{season} aims to fill an important gap in the \R software by
+  providing a range of tools for analysing seasonal data. The examples
+  are based on health data, but the functions are equally applicable to
+  any data with a seasonal pattern.
 
-  In the next version we hope to make the nscosinor function faster and improve the plots.
+  In the next version we hope to make the nscosinor function faster and
+  improve the plots.
 
   \tabular{ll}{
     Package: \tab season\cr
     Type: \tab Package\cr
     Version: \tab 0.2-4\cr
-    Date: \tab 2010-02-07\cr
+    Date: \tab 2010-03-03\cr
     License: \tab GPL (>= 3)\cr
   }
 }
@@ -32,5 +45,6 @@
   ts
   models}
 \examples{
-## see examples for \code{\link{cosinor}}, \code{\link{monthglm}}, \code{\link{nscosinor}} and \code{\link{casecross}}
+## see examples for \code{\link{cosinor}}, \code{\link{monthglm}},
+##                  \code{\link{nscosinor}} and \code{\link{casecross}}
 }

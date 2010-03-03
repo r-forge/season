@@ -4,12 +4,13 @@
 ## Changes
 ## 7/2/10: incorporated titles/axes labekls/colour setting/auto legend
 
-plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
+plotCircular<-function(area1,area2=NULL,spokes=NULL,
                        scale=0.8,labels,stats=TRUE,dp=1,
                        clockwise=TRUE,spoke.col='black',lines=FALSE,
                        centrecirc=0.03,
                        main="", xlab="", ylab="",
                        pieces.col=c("white","gray"),
+                       length=FALSE,
                        legend=TRUE,
                        auto.legend=list(x="bottomright",fill=NULL, 
                          labels=NULL, title=""), ...){
@@ -17,13 +18,13 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
   ## NB: need some serious argumnt checking
   ## NB2: can find list of available colours using colors()
 
-  ## No legend if only one variable and check radii vars same length
-  if (is.null(radii2)) {
+  ## No legend if only one variable and check area vars same length
+  if (is.null(area2)) {
     legend <- FALSE
   } else {
-    if (length(radii1)!=length(radii2))
-      cat("Warning: length of", deparse(substitute(radii1)),
-          "and", deparse(substitute(radii2)),"not equal\n")
+    if (length(area1)!=length(area2))
+      cat("Warning: length of", deparse(substitute(area1)),
+          "and", deparse(substitute(area2)),"not equal\n")
   }
   
   ##print(pieces.col)
@@ -36,7 +37,7 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
   op <- par(no.readonly = TRUE) # the whole list of settable par's.
   on.exit(par(op)) # restore graphic settings whenever function exits
 
-  bins<-length(radii1)
+  bins<-length(area1)
   clockstart=pi/2 # default clock start at 12 o'clock
   half<- 2*pi/(bins*2) # for moving text/spokes half-way round
   if (clockwise==TRUE) mult=-1 else mult=1
@@ -52,11 +53,23 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
   plot(circle,type='l',col='black',bty='n',yaxt='n',main=main,
        xlab=xlab, ylab=ylab, xlim=c(-1,1),ylim=c(-1,1),xaxt='n', ...)
 
-  ## scale the radii to the maximum multiplied by the user-defined scale
+  ## scale cheeses to their area
+  aarea1<-area1
+  if(is.null(area2)==FALSE){
+      aarea2<-area2
+  }
+  if(length==F){
+     aarea1<-sqrt(area1*12/pi)
+     if(is.null(area2)==FALSE){
+        aarea2<-sqrt(area2*12/pi)
+     }
+  }
+
+  ## scale the area to the maximum multiplied by the user-defined scale
   ## draw the cheeses
   for (cheeseno in 1:bins){
-    if(is.null(radii2)==TRUE){
-      scaled1<-scale*radii1/max(radii1)
+    if(is.null(area2)==TRUE){
+      scaled1<-scale*aarea1/max(aarea1)
       cheese<-matrix(nrow=102,ncol=2,data=0)
       start<-2*pi*((cheeseno-1)/bins)+clockstart
       frac<-1/100
@@ -74,10 +87,10 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
     
     ## plot with two segments #
     ## 1st pattern
-    if(is.null(radii2)==FALSE){
-      allradii<-c(radii1,radii2)
-      scaled1<-scale*radii1/max(allradii)
-      scaled2<-scale*radii2/max(allradii)
+    if(is.null(area2)==FALSE){
+      allarea<-c(aarea1,aarea2)
+      scaled1<-scale*aarea1/max(allarea)
+      scaled2<-scale*aarea2/max(allarea)
       cheese1<-matrix(nrow=52,ncol=2,data=0)
       cheese2<-matrix(nrow=52,ncol=2,data=0)
       start<-2*pi*((cheeseno-1)/bins)+clockstart
@@ -121,7 +134,7 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
 
   ## add the labels with stats
   if (is.null(labels)==FALSE&stats==TRUE){
-    clabel2<-formatC(radii1, format="f", digits=dp) # convert to character
+    clabel2<-formatC(area1, format="f", digits=dp) # convert to character
     for (cheeseno in 1:bins){
       x<-mult*0.86*cos((2*pi*cheeseno/bins)+start+half)
       y<-0.86*sin((2*pi*cheeseno/bins)+start+half)
@@ -175,8 +188,8 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
     ##}
     
     if (length(auto.legend$labels)==0){
-      labels <- c(deparse(substitute(radii1)),
-                  deparse(substitute(radii2)))
+      labels <- c(deparse(substitute(area1)),
+                  deparse(substitute(area2)))
     } else {
       labels <- auto.legend$labels
     }
@@ -197,11 +210,11 @@ plotCircular<-function(radii1,radii2=NULL,spokes=NULL,
 } # end of function
 
 ## examples
-##radii<-c(8,7,6,5,4,3.5,2)
-##plotCircular(radii,scale=0.7,clockwise=TRUE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
-##plotCircular(radii,scale=0.8,clockwise=FALSE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
+##area<-c(8,7,6,5,4,3.5,2)
+##plotCircular(area,scale=0.7,clockwise=TRUE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
+##plotCircular(area,scale=0.8,clockwise=FALSE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
 
-##radii<-c(12,11,6,5,4,3,2)
-##plotCircular(radii,scale=0.8,clockwise=TRUE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
+##area<-c(12,11,6,5,4,3,2)
+##plotCircular(area,scale=0.8,clockwise=TRUE,labels=c("Mon","Tue","Wed","Thu","Fri","Sat","Sun"))
 
 
