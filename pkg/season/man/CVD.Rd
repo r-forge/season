@@ -20,7 +20,7 @@
     \item{\code{pop}}{Los Angeles population aged 75+ in the year 2000}
     \item{\code{ndaysmonth}}{number of days in each month (used as an offset)}
     \item{\code{adj}}{adjusted number of CVD deaths per month using a
-      standardised month length, cvd \eqn{\times} ((365.25/12)/ndaysmonth).
+      standardised month length. Monthly number of CVD deaths multiplied by (365.25/12)/ndaysmonth.
       So the standard month length is 30.4 days.}
   }
 }
